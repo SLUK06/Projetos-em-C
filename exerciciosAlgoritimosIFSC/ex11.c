@@ -31,7 +31,4 @@ int main(){
     printf("\nDescontos: %.2f", TD);
     printf("\nSalário Liquido: %.2f", SL);
     printf("\n");
-
-
-
 }
