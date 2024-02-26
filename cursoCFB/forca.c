@@ -65,14 +65,13 @@ void verificaGanhou(){
 }
 
 void chancesRestantes(){
-    if(chances == 5) {
-        printf("\nVoce ainda tem 4 chances");
-    } else if(chances > 0 &&  chances < 5) {
+    if(chances > 0 && ganhou == 0) {
         printf("\nVoce ainda tem %d chances", chances);
-    } else if(chances > 0){
+    } else if(chances == 0 && ganhou == 0){
         printf("\nVoce perdeu!");
         printf("\nA palavra secreta era: %s", palavraSecreta);
     } else if(ganhou == 1){
+        printf("\n");
         printf("\nParabens! Voce acertou a palavra!");
     }
 
@@ -119,7 +118,7 @@ void digitarLetras(){
 
         qtdLetrasDigitadas++;
 
-        verificaGanhou();
+        
 
         int letraExiste = 0;
 
@@ -129,10 +128,10 @@ void digitarLetras(){
                 letraExiste = 1;
                 acertos++;
                 
-                break;
             }
             
         }
+
         if(letraExiste == 0){
             int letraRepetida = 0;
             for(int i = 0; i < qtdLetrasDigitadas - 1; i++){
@@ -148,6 +147,7 @@ void digitarLetras(){
             }   
              
         }  
+        verificaGanhou();
         printf("\nAcertos: %d", acertos); 
     }
 }
@@ -163,14 +163,15 @@ int main(){
     tamanhoPalavra = strlen(palavras[palavraRandom]);
     
 
-    while(chances > 0){
+    while(chances > 0 && ganhou == 0){
         forca();
         exibirPalavra();
         digitarLetras();
         chancesRestantes();  
     }
 
-    if(chances == 0){
+    if(chances == 0 || ganhou == 1){
+        system("cls");
         forca();
         exibirPalavra();
         chancesRestantes();
