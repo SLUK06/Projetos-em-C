@@ -178,6 +178,3 @@ void digitarLetras(){
         printf("\nAcertos: %d", acertos); 
     }
 }
-
-
-
