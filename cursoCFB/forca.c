@@ -69,7 +69,7 @@ void chancesRestantes(){
         printf("\nVoce ainda tem 4 chances");
     } else if(chances > 0 &&  chances < 5) {
         printf("\nVoce ainda tem %d chances", chances);
-    } else if(ganhou == 0 && chances > 0){
+    } else if(chances > 0){
         printf("\nVoce perdeu!");
         printf("\nA palavra secreta era: %s", palavraSecreta);
     } else if(ganhou == 1){
@@ -79,12 +79,12 @@ void chancesRestantes(){
 }
 
 void exibirPalavra(){
-    strcpy(palavraSecreta, palavras[palavraRandom]);
-    tamanhoPalavra = strlen(palavras[palavraRandom]);
+    
     //printf("\n%s", palavraSecreta);
 
     
     //printf("\n%d", tamLetrasDigitadas);
+    printf("\nTamanho da palavra: %d", tamanhoPalavra);
     printf("\n");
 
     for(int i = 0; i < tamanhoPalavra; i++){
@@ -117,19 +117,18 @@ void digitarLetras(){
         scanf("%c", &letrasDigitadas[qtdLetrasDigitadas]);
         getchar();
 
-        qtdLetrasDigitadas ++;
+        qtdLetrasDigitadas++;
 
         verificaGanhou();
-
-        
 
         int letraExiste = 0;
 
         for(int i = 0; i < tamanhoPalavra; i++){
             if(letrasDigitadas[qtdLetrasDigitadas - 1] == palavraSecreta[i]){
+                
                 letraExiste = 1;
-                acertos ++;
-                printf("\nAcertos: %d", acertos);
+                acertos++;
+                
                 break;
             }
             
@@ -148,7 +147,8 @@ void digitarLetras(){
                 chances--;
             }   
              
-        }   
+        }  
+        printf("\nAcertos: %d", acertos); 
     }
 }
 
@@ -159,18 +159,18 @@ int main(){
     menu();
     srand(time(NULL));
     palavraRandom = rand() % 20;
+    strcpy(palavraSecreta, palavras[palavraRandom]);
+    tamanhoPalavra = strlen(palavras[palavraRandom]);
     
 
-    while(chances > 0 && ganhou == 0){
+    while(chances > 0){
         forca();
         exibirPalavra();
         digitarLetras();
         chancesRestantes();  
-        system("cls");
     }
 
-    if(chances == 0 || ganhou == 1){
-        system("cls");
+    if(chances == 0){
         forca();
         exibirPalavra();
         chancesRestantes();
