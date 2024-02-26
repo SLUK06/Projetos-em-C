@@ -15,15 +15,50 @@ char palavraExibir[10];
 char letrasDigitadas[15];
 int qtdLetrasDigitadas = 0;
 int tamLetrasDigitadas = sizeof(letrasDigitadas[0]) - 1;
-char palavras[20][11] = {"casa",     "arvore",  "carro", 
+char palavras[21][12] = {"casa",     "arvore",  "carro", 
                          "bola",     "gato",    "cachorro", 
                          "mesa",     "cadeira", "sol", 
                          "lua",      "maca",    "banana", 
                          "livro",    "caneta",  "computador", 
                          "telefone", "flor",    "janela", 
-                         "porta",    "chave"};
+                         "porta",    "chave",   "helicoptero"};
 
-  
+void menu();
+void forca();
+void exibirPalavra();
+void chancesRestantes();
+void digitarLetras();
+void verificaGanhou();
+
+int main(){ 
+    system("cls");
+    menu();
+    srand(time(NULL));
+    palavraRandom = rand() % 20;
+    strcpy(palavraSecreta, palavras[palavraRandom]);
+    tamanhoPalavra = strlen(palavras[palavraRandom]);
+    
+
+    while(chances > 0 && ganhou == 0){
+        forca();
+        exibirPalavra();
+        chancesRestantes();
+        digitarLetras();
+        system("cls");  
+    }
+
+    if(chances == 0 || ganhou == 1){
+        system("cls");
+        forca();
+        exibirPalavra();
+        chancesRestantes();
+    }
+
+
+    printf("\n");
+    system("pause");
+
+} 
 
 void menu(){
     system("cls");
@@ -78,10 +113,8 @@ void chancesRestantes(){
 }
 
 void exibirPalavra(){
-    
     //printf("\n%s", palavraSecreta);
 
-    
     //printf("\n%d", tamLetrasDigitadas);
     printf("\nTamanho da palavra: %d", tamanhoPalavra);
     printf("\n");
@@ -116,20 +149,15 @@ void digitarLetras(){
         scanf("%c", &letrasDigitadas[qtdLetrasDigitadas]);
         getchar();
 
-        qtdLetrasDigitadas++;
-
-        
+        qtdLetrasDigitadas++; 
 
         int letraExiste = 0;
 
         for(int i = 0; i < tamanhoPalavra; i++){
-            if(letrasDigitadas[qtdLetrasDigitadas - 1] == palavraSecreta[i]){
-                
+            if(letrasDigitadas[qtdLetrasDigitadas - 1] == palavraSecreta[i]){   
                 letraExiste = 1;
                 acertos++;
-                
-            }
-            
+            }  
         }
 
         if(letraExiste == 0){
@@ -144,8 +172,7 @@ void digitarLetras(){
             }
             if (letraRepetida == 0 && qtdLetrasDigitadas > 0) {
                 chances--;
-            }   
-             
+            }
         }  
         verificaGanhou();
         printf("\nAcertos: %d", acertos); 
@@ -154,31 +181,3 @@ void digitarLetras(){
 
 
 
-int main(){ 
-    system("cls");
-    menu();
-    srand(time(NULL));
-    palavraRandom = rand() % 20;
-    strcpy(palavraSecreta, palavras[palavraRandom]);
-    tamanhoPalavra = strlen(palavras[palavraRandom]);
-    
-
-    while(chances > 0 && ganhou == 0){
-        forca();
-        exibirPalavra();
-        digitarLetras();
-        chancesRestantes();  
-    }
-
-    if(chances == 0 || ganhou == 1){
-        system("cls");
-        forca();
-        exibirPalavra();
-        chancesRestantes();
-    }
-
-
-    printf("\n");
-    system("pause");
-
-}
