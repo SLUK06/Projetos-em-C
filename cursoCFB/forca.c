@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
 #include <string.h> 
 #include <time.h>
 
@@ -31,7 +30,7 @@ void digitarLetras();
 void verificaGanhou();
 
 int main(){ 
-    system("cls");
+    system("clear");
     menu();
     srand(time(NULL));
     palavraRandom = rand() % 20;
@@ -44,11 +43,11 @@ int main(){
         exibirPalavra();
         chancesRestantes();
         digitarLetras();
-        system("cls");  
+        system("clear");  
     }
 
     if(chances == 0 || ganhou == 1){
-        system("cls");
+        system("clear");
         forca();
         exibirPalavra();
         chancesRestantes();
@@ -56,12 +55,11 @@ int main(){
 
 
     printf("\n");
-    system("pause");
 
 } 
 
 void menu(){
-    system("cls");
+    system("clear");
     printf("\n------------------------------");
     printf("\n- Bem Vindo ao Jogo da Forca -");
     printf("\n------------------------------");

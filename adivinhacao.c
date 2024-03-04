@@ -43,8 +43,9 @@ int main()
 
         if (chute == numeroSecreto){
             printf("\nVoce acertouu!");
-            printf("\nO numero secréto é exatamente %d!!", numeroSecreto);
+            printf("\nO numero secreto é exatamente %d!!", numeroSecreto);
             printf("\n");
+            break;
         } else {
             if (quantidadeDeChutes < 2){
                 printf("\nVoce perdeu!!");
