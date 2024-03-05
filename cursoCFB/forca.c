@@ -111,7 +111,7 @@ void chancesRestantes(){
 }
 
 void exibirPalavra(){
-    //printf("\n%s", palavraSecreta);
+    printf("\n%s", palavraSecreta);
 
     //printf("\n%d", tamLetrasDigitadas);
     printf("\nTamanho da palavra: %d", tamanhoPalavra);
