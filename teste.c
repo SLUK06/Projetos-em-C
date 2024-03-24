@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-void func1(char hello){
-    printf("\n%x", &hello);
-    func1(hello);
-}
+
 
 void main(){
-    char hello[5] = {"Hello"};
-    func1(hello[0]);
+    int num = 20;
+    int *ptr;
+    ptr = &num;
+    printf("\nendereço de num = %p", &num);
+    printf("\nconteudo de num = %d", num);
+    printf("\nendereço de ptr = %p", &ptr);
+    printf("\nconteudo de ptr = %d", *ptr);
 
     return;
 }
