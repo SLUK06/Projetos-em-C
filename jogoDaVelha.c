@@ -9,6 +9,9 @@ int par = 1;
 int venceu = 0;
 int digitados[10];
 int indice = 0;
+int selecionados[9];
+int qtdSelecionada = 0;
+
 
 int imprimirJogo(){
 
@@ -47,10 +50,17 @@ int imprimirJogo(){
 void xLetraSelecionada(){
     int linha;
     int coluna;
-    
+
     printf("\n");
     printf("\nPor favor escolha um número: ");
     scanf("\n%d", &selecionada);
+    selecionados[qtdSelecionada] = selecionada;
+    qtdSelecionada ++;
+
+    for(int i = 0; i < qtdSelecionada; i ++){
+        printf("\nSelecionados: %d\n", selecionados[i]);
+    }
+    
     
     imprimirJogo();
 
